@@ -152,8 +152,6 @@ $l=7.9m$
 
 $S_\text{wet}=32.26 m^2$ (value given in the question differs a negligible amount from my calculations so I am going with the one provided in the question)
 
-$R=9.67*10^6$
-
 $t/c=0.15$
 
 $M=0.27$
@@ -166,10 +164,12 @@ This is from the estimation document
 
 $Q_c=1.0$
 
-Assuming turbulent flow
+$$
+R=\frac{\rho V l}{\mu}=\frac{0.993kg/m^3 * 89.6m/s * 7.9m}{1.7*10^{-5}\frac{kg}{m*s}}=4.135×10^7
+$$
 
 $$
-C_f=\frac{0.455}{(\log_{10}R)^{2.58}(1+0.144M^2)^{0.65}}=\frac{0.455}{(\log_{10}(9.67*10^6))^{2.58}(1+0.144(0.27)^2)^{0.65}}=0.002999
+C_f=\frac{0.455}{(\log_{10}R)^{2.58}(1+0.144M^2)^{0.65}}=\frac{0.455}{(\log_{10}(4.135×10^7))^{2.58}(1+0.144(0.27)^2)^{0.65}}=0.0023996
 $$
 
 $$
@@ -181,12 +181,10 @@ FF_{\text{fuselage}}=0.9+\frac{5}{f^{1.5}}+\frac{f}{400}=0.9+\frac{5}{4.699^{1.5
 $$
 
 $$
-C_{\text{D,fuselage}}=C_f FF Q_c \frac{S_\text{wet}}{S_\text{wing}}=0.002999 * 1.403 * 1.0* \frac{32.1 m^2}{22.9m^2}=\boxed{0.005898}
+C_{\text{D,fuselage}}=C_f FF Q_c \frac{S_\text{wet}}{S_\text{wing}}=0.0023996 * 1.403 * 1.0* \frac{32.1 m^2}{22.9m^2}=\boxed{0.004719}
 $$
 
 ## 2. (c)
-
-$C_f=0.002999$
 
 $t/c=0.15$
 
@@ -200,7 +198,13 @@ $Q_\text{wing}=1.0$
 
 $S_\text{wing}=22.9m^2$
 
-And now for the other terms.
+$R=9.67*10^6$
+
+Assuming turbulent flow
+
+$$
+C_f=\frac{0.455}{(\log_{10}R)^{2.58}(1+0.144M^2)^{0.65}}=\frac{0.455}{(\log_{10}(9.67*10^6))^{2.58}(1+0.144(0.27)^2)^{0.65}}=0.002999
+$$
 
 $$
 FF=\left[1+\frac{0.6}{(x/c)_m}\left(\frac{t}{c}\right)+100\left(\frac{t}{c}\right)^4\right]\left[1.34M^{0.18}(\cos\Lambda_m)^{0.28}\right]
@@ -227,5 +231,5 @@ C_D=C_{D,0}+KC_L^2=C_{D,fuselage}+C_{D,wing}+KC_{L,wing}^2
 $$
 
 $$
-=0.005898+0.008813+0.0560C_L^2=\boxed{0.01471 + 0.0560C_L^2}
+=0.004719+0.008813+0.0560C_L^2=\boxed{0.0135 + 0.0560C_L^2}
 $$
