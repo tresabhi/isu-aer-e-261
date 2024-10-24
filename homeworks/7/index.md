@@ -27,3 +27,31 @@ Refer the adjacent Python file for the code. Refer to the provided CLI per secti
 `py index.py --plot=v_stall`
 
 ![](https://i.imgur.com/tXf3J3g.png)
+
+## 2. (b)
+
+`py index.py --plot=v_r_c_max`
+
+![](https://i.imgur.com/7IhKa87.png)
+
+## 2. (c)
+
+Yes, it is.
+
+## 3. (a)
+
+`py index.py --plot=p_r`
+
+![](https://i.imgur.com/1fkANzm.png)
+
+## 3. (b)
+
+`py index.py --plot=p_a`
+
+![](https://i.imgur.com/CF5b2O7.png)
+
+## 3. (c)
+
+`py index.py --plot=p_e`
+
+![]()

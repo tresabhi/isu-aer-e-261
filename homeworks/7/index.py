@@ -33,7 +33,6 @@ T_table = [
 ]
 
 
-# Accepts altitude and returns Earthly temperature.
 # m -> K
 def temperature(h: int):
     # iterate through the table...
@@ -78,13 +77,37 @@ def v_stall(h: int):
     return math.sqrt((2 * W_0) / (density(h) * S_wing * C_L_max))
 
 
+# m -> m/s
+def v_r_c_max(h: int):
+    # applying the v_r_c_max formula
+    return math.sqrt((2 / density(h)) * (W_0 / S_wing) * math.sqrt(K / (3 * C_D_0)))
+
+
+# scuffed way to write max C_L^3/2 over C_D
+C_L_3_2_C_D = (1 / 4) * (3 / (K * (C_D_0) ** (1 / 3))) ** (3 / 4)
+
+
+# m -> W
+def p_r(h: int):
+    return math.sqrt(2 / (density(h) * S_wing)) * ((W_0 ** (3 / 2)) / C_L_3_2_C_D)
+
+
+# m -> W
+def p_a(h: int):
+    return P * (pressure(h) / p_0)
+
+
+# m -> W
+def p_e(h: int):
+    return p_a(h) - p_r(h)
+
+
 h_0 = 0  # m
 h_1 = 25e3  # m
 delta_h = 1  # m
 
 # range of heights
 x = np.arange(h_0, h_1, delta_h)
-y = []
 
 # turning this file into a mono-file CLI
 if len(sys.argv) < 2:
@@ -95,29 +118,53 @@ if len(sys.argv) < 2:
 
 # catching all plot types
 if sys.argv[1] == "--plot=temperature":
-    y = [temperature(h) for h in x]
+    plt.plot([temperature(h) for h in x], x)
     plt.xlabel("Temperature (K)")
     plt.title("Temperature vs. Height")
 elif sys.argv[1] == "--plot=pressure":
-    y = [pressure(h) for h in x]
+    plt.plot([pressure(h) for h in x], x)
     plt.xlabel("Pressure (Pa)")
     plt.title("Pressure vs. Height")
 elif sys.argv[1] == "--plot=density":
-    y = [density(h) for h in x]
+    plt.plot([density(h) for h in x], x)
     plt.xlabel("Density (kg/m^3)")
     plt.title("Density vs. Height")
 elif sys.argv[1] == "--plot=v_stall":
-    y = [v_stall(h) for h in x]
+    plt.plot([v_stall(h) for h in x], x)
     plt.xlabel("Velocity (m/s)")
     plt.title("Stall Velocity vs. Height")
+elif sys.argv[1] == "--plot=v_r_c_max":
+    plt.plot([v_r_c_max(h) for h in x], x, label="Max Rate of Climb")
+    plt.plot([v_stall(h) for h in x], x, label="Stall Velocity")
+    plt.legend()
+    plt.xlabel("Velocity (m/s)")
+    plt.title("Max Rate of Climb vs. Height")
+elif sys.argv[1] == "--plot=p_r":
+    plt.plot([p_r(h) / 1000 for h in x], x)
+    plt.xlabel("Power Required (kW)")
+    plt.title("Power Required vs. Height")
+elif sys.argv[1] == "--plot=p_a":
+    plt.plot([p_a(h) / 1000 for h in x], x, label="Power Available")
+    plt.plot([p_r(h) / 1000 for h in x], x, label="Power Required")
+    plt.legend()
+    plt.xlabel("Power Available (kW)")
+    plt.title("Power Available vs. Height")
+elif sys.argv[1] == "--plot=p_e":
+    plt.plot([p_e(h) / 1000 for h in x], x, label="Power Excess")
+    plt.plot([p_a(h) / 1000 for h in x], x, label="Power Available")
+    plt.plot([p_r(h) / 1000 for h in x], x, label="Power Required")
+    plt.xlim(0)
+    plt.legend()
+    plt.xlabel("Power Excess (kW)")
+    plt.title("Power Excess vs. Height")
 # catching invalid plot types
 else:
     raise ValueError(
         "Illegal plot argument. Run the command without arguments to see all plots types."
     )
 
+
 # time for matplotlib to shine
 plt.ylabel("Height (m)")
-plt.plot(y, x)
 plt.grid()
 plt.show()
