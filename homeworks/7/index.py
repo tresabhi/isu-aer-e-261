@@ -1,11 +1,10 @@
+# AERE 261 HW 7
+# Abhigyaan Deep
+
 import math
 import sys
 from matplotlib import pyplot as plt
 import numpy as np
-
-# I am honestly unsure how many comments are expected from me. Though
-# I don't see any comments other than the units necessary, I will try my best
-# to explain everything no matter how trivial.
 
 # given constants
 C_D_0 = 0.017
