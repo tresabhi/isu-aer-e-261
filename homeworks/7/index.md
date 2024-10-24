@@ -54,4 +54,18 @@ Yes, it is.
 
 `py index.py --plot=p_e`
 
-![]()
+![](https://i.imgur.com/TWeR79O.png)
+
+## 4. (a)
+
+`py index.py --plot=r_c_max`
+
+![](https://i.imgur.com/FdF0Z8Q.png)
+
+## 4. (b)
+
+`py index.py --plot=ceilings`
+
+Service ceiling is about $16.8km$ and the absolute ceiling is about $17.5km$.
+
+![](https://i.imgur.com/iOO1UBp.png)

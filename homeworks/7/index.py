@@ -84,12 +84,12 @@ def v_r_c_max(h: int):
 
 
 # scuffed way to write max C_L^3/2 over C_D
-C_L_3_2_C_D = (1 / 4) * (3 / (K * (C_D_0) ** (1 / 3))) ** (3 / 4)
+C_L_3_2_C_D_max = (1 / 4) * (3 / (K * (C_D_0) ** (1 / 3))) ** (3 / 4)
 
 
 # m -> W
 def p_r(h: int):
-    return math.sqrt(2 / (density(h) * S_wing)) * ((W_0 ** (3 / 2)) / C_L_3_2_C_D)
+    return math.sqrt(2 / (density(h) * S_wing)) * ((W_0 ** (3 / 2)) / C_L_3_2_C_D_max)
 
 
 # m -> W
@@ -100,6 +100,16 @@ def p_a(h: int):
 # m -> W
 def p_e(h: int):
     return p_a(h) - p_r(h)
+
+
+C_L_C_D_max = math.sqrt(1 / (4 * K * C_D_0))
+
+
+# m -> m/s
+def r_c_max(h: int):
+    return eta_pr * P / W_0 - math.sqrt(
+        (2 / density(h)) * math.sqrt(K / (3 * C_D_0)) * (W_0 / S_wing)
+    ) * (1.155 / C_L_C_D_max)
 
 
 h_0 = 0  # m
@@ -157,6 +167,21 @@ elif sys.argv[1] == "--plot=p_e":
     plt.legend()
     plt.xlabel("Power Excess (kW)")
     plt.title("Power Excess vs. Height")
+elif sys.argv[1] == "--plot=r_c_max":
+    plt.plot([r_c_max(h) for h in x], x)
+    plt.xlim(0)
+    plt.xlabel("Rate of Climb Max (m/s)")
+    plt.title("Rate of Climb Max vs. Height")
+elif sys.argv[1] == "--plot=ceilings":
+    # 100ft/min = 0.508m/s
+
+    plt.plot([r_c_max(h) for h in x], x, label="Rate of Climb Max")
+    plt.plot([0.508 for _ in x], x, label="Service Ceiling")
+    plt.plot([0 for _ in x], x, label="Absolute Ceiling")
+    plt.xlim(-1)
+    plt.legend()
+    plt.xlabel("Rate of Climb Max (m/s)")
+    plt.title("Rate of Climb Max vs. Height")
 # catching invalid plot types
 else:
     raise ValueError(
