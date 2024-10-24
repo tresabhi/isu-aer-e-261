@@ -4,6 +4,34 @@ Abhigyaan Deep
 
 Refer the adjacent Python file for the code. Refer to the provided CLI per section to run the script.
 
+$$
+C_{D,0}=0.017
+$$
+
+$$
+K=0.056
+$$
+
+$$
+(C_L)_{max}=1.37
+$$
+
+$$
+S_{wing}=22.9m^2
+$$
+
+$$
+\eta_{pr}=90\%=0.9
+$$
+
+$$
+W_0=16481N
+$$
+
+$$
+P=180000W
+$$
+
 ## 1. (a)
 
 `py index.py --plot=temperature`
@@ -69,3 +97,47 @@ Yes, it is.
 Service ceiling is about $16.8km$ and the absolute ceiling is about $17.5km$.
 
 ![](https://i.imgur.com/iOO1UBp.png)
+
+## 5. (a)
+
+$$
+h=7000ft=2134m
+$$
+
+$$
+\rho_\infty=0.993kg/m^3
+$$
+
+$$
+\tan\theta_{min}=\frac{1}{(L/D)_{max}}=\frac{1}{(C_L/C_D)_{max}}
+$$
+
+$$
+\theta_{min}=\arctan\frac{1}{(C_L/C_D)_{max}}
+$$
+
+$$
+(C_L/C_D)_{max}=\sqrt{\frac{1}{4KC_{D,0}}}=\sqrt{\frac{1}{4 * 0.056 * 0.017}}=16.21
+$$
+
+$$
+\theta_{min}=\arctan\frac{1}{16.21}=\boxed{3.53\degree}
+$$
+
+## 5. (b)
+
+$$
+d_{max}=\frac{h}{\tan\theta_{min}}=\frac{2134m}{\tan3.53\degree}=\boxed{34590m}
+$$
+
+## 5. (c)
+
+$$
+V_\infty=\sqrt{\frac{2W}{\rho_\infty S}\sqrt{\frac{K}{C_{D,0}}}}=\sqrt{\frac{2 * 16481N}{0.993kg/m^3 * 22.9m^2}\sqrt{\frac{0.056}{0.017}}}=\boxed{51.29m/s}
+$$
+
+## 5. (d)
+
+$$
+V_s=V_\infty\sin\theta_{min}=51.29m/s * \sin 3.53\degree=\boxed{3.158m/s}
+$$
