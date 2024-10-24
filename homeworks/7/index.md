@@ -4,34 +4,6 @@ Abhigyaan Deep
 
 Refer the adjacent Python file for the code. Refer to the provided CLI per section to run the script.
 
-$$
-C_{D,0}=0.017
-$$
-
-$$
-K=0.056
-$$
-
-$$
-(C_L)_{max}=1.37
-$$
-
-$$
-S_{wing}=22.9m^2
-$$
-
-$$
-\eta_{pr}=90\%=0.9
-$$
-
-$$
-W_0=16481N
-$$
-
-$$
-P=180000W
-$$
-
 ## 1. (a)
 
 `py index.py --plot=temperature`
@@ -99,6 +71,34 @@ Service ceiling is about $16.8km$ and the absolute ceiling is about $17.5km$.
 ![](https://i.imgur.com/iOO1UBp.png)
 
 ## 5. (a)
+
+$$
+C_{D,0}=0.017
+$$
+
+$$
+K=0.056
+$$
+
+$$
+(C_L)_{max}=1.37
+$$
+
+$$
+S_{wing}=22.9m^2
+$$
+
+$$
+\eta_{pr}=90\%=0.9
+$$
+
+$$
+W_0=16481N
+$$
+
+$$
+P=180000W
+$$
 
 $$
 h=7000ft=2134m
